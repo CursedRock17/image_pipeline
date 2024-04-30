@@ -406,6 +406,9 @@ class Calibrator():
     def set_cammodel(self, modeltype):
         self.camera_model = modeltype
 
+    def set_vga_scale(self, scale):
+        self.vga_scale = scale
+
     def is_slow_moving(self, corners, ids, last_frame_corners, last_frame_ids):
         """
         Returns true if the motion of the checkerboard is sufficiently low between
@@ -537,7 +540,7 @@ class Calibrator():
         height = img.shape[0]
         width = img.shape[1]
         if self.vga_scale == 0:
-            scale = math.sqrt((width*height) / (640.*480.))
+            scale = math.sqrt((width * height) / (640. * 480.))
         else:
             scale = self.vga_scale
 
