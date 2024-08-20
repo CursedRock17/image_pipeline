@@ -2,6 +2,65 @@
 Changelog for package depth_image_proc
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+6.0.3 (2024-08-20)
+------------------
+* Publish using unique ptr (`#1016 <https://github.com/ros-perception/image_pipeline/issues/1016>`_)
+  Prevents doing an extra copy of the data when using intra-process
+  communication.
+* Finish QoS updates (`#1019 <https://github.com/ros-perception/image_pipeline/issues/1019>`_)
+  This implements the remainder of `#847 <https://github.com/ros-perception/image_pipeline/issues/847>`_:
+  - Make sure publishers default to system defaults (reliable)
+  - Add QoS overriding where possible (some of the image_transport /
+  message_filters stuff doesn't really support that)
+  - Use the matching heuristic for subscribers consistently
+* fix signature issue from `#943 <https://github.com/ros-perception/image_pipeline/issues/943>`_ (`#1018 <https://github.com/ros-perception/image_pipeline/issues/1018>`_)
+  Without this, we get
+  ```
+  symbol lookup error: /home/ubr/jazzy/install/depth_image_proc/lib/libdepth_image_proc.so: undefined symbol: _ZN16depth_image_proc10convertRgbERKSt10shared_ptrIKN11sensor_msgs3msg6Image_ISaIvEEEES0_INS2_12PointCloud2_IS4_EEEiiii
+  c++filt _ZN16depth_image_proc10convertRgbERKSt10shared_ptrIKN11sensor_msgs3msg6Image_ISaIvEEEES0_INS2_12PointCloud2_IS4_EEEiiii
+  depth_image_proc::convertRgb(std::shared_ptr<sensor_msgs::msg::Image\_<std::allocator<void> > const> const&, std::shared_ptr<sensor_msgs::msg::PointCloud2\_<std::allocator<void> > >, int, int, int, int)
+  ```
+* Contributors: Błażej Sowa, Michael Ferguson
+
+6.0.2 (2024-07-23)
+------------------
+* Removed deprecation warnings (`#1010 <https://github.com/ros-perception/image_pipeline/issues/1010>`_)
+* Contributors: Alejandro Hernández Cordero
+
+6.0.1 (2024-07-22)
+------------------
+* Updated deprecated message filter headers (`#1012 <https://github.com/ros-perception/image_pipeline/issues/1012>`_)
+* Contributors: Alejandro Hernández Cordero
+
+6.0.0 (2024-05-27)
+------------------
+
+5.0.1 (2024-03-26)
+------------------
+* Update depth_image_proc::RegisterNode documentation (`#957 <https://github.com/ros-perception/image_pipeline/issues/957>`_)
+  Adding missing parameters from register node of depth_image_proc
+  package.
+  Related to Issue `#956 <https://github.com/ros-perception/image_pipeline/issues/956>`_
+* add invalid_depth param (`#943 <https://github.com/ros-perception/image_pipeline/issues/943>`_)
+  Add option to set all invalid depth pixels to a specified value, typically the maximum range.
+  * Updates convertDepth parameter name and optimizes use of the parameter.
+  * Updates PointCloudXYZ, PointCloudXYZI, and PointCloudXYZRGB with new invalid_depth parameter
+* fix image publisher remapping (`#941 <https://github.com/ros-perception/image_pipeline/issues/941>`_)
+  Addresses `#940 <https://github.com/ros-perception/image_pipeline/issues/940>`_ - fixes the compressed/etc topic remapping for publishers
+* unified changelog, add missing image, deduplicate tutorials (`#938 <https://github.com/ros-perception/image_pipeline/issues/938>`_)
+  Last bit of documentation updates - putting together a single changelog
+  summary for the whole release (rather than scattering among packages).
+  Unified the camera_info tutorial so it isn't duplicated. Added a missing
+  image from image_rotate (was on local disk, but hadn't committed it)
+* migrate image_pipeline docs (`#929 <https://github.com/ros-perception/image_pipeline/issues/929>`_)
+  * Migrates image_pipeline overview page
+  * Migrates CameraInfo wiki page
+  * Adds links to the other packages in this stack
+  * Updates depth_image_proc and image_proc to have the overview page properly named and in the TOC
+* migrate depth_image_proc docs (`#926 <https://github.com/ros-perception/image_pipeline/issues/926>`_)
+* Fixed image types in depth_image_proc
+* Contributors: Alejandro Hernández Cordero, Alessio Parmeggiani, Michael Ferguson, philipp.polterauer
+
 5.0.0 (2024-01-24)
 ------------------
 * radial nodes: should all sub to raw topics (`#906 <https://github.com/ros-perception/image_pipeline/issues/906>`_)
