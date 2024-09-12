@@ -2,6 +2,40 @@
 Changelog for package image_rotate
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+6.0.3 (2024-08-20)
+------------------
+* Publish using unique ptr (`#1016 <https://github.com/ros-perception/image_pipeline/issues/1016>`_)
+  Prevents doing an extra copy of the data when using intra-process
+  communication.
+* Finish QoS updates (`#1019 <https://github.com/ros-perception/image_pipeline/issues/1019>`_)
+  This implements the remainder of `#847 <https://github.com/ros-perception/image_pipeline/issues/847>`_:
+  - Make sure publishers default to system defaults (reliable)
+  - Add QoS overriding where possible (some of the image_transport /
+  message_filters stuff doesn't really support that)
+  - Use the matching heuristic for subscribers consistently
+* Contributors: Błażej Sowa, Michael Ferguson
+
+6.0.2 (2024-07-23)
+------------------
+
+6.0.1 (2024-07-22)
+------------------
+
+6.0.0 (2024-05-27)
+------------------
+
+5.0.1 (2024-03-26)
+------------------
+* fix image publisher remapping (`#941 <https://github.com/ros-perception/image_pipeline/issues/941>`_)
+  Addresses `#940 <https://github.com/ros-perception/image_pipeline/issues/940>`_ - fixes the compressed/etc topic remapping for publishers
+* unified changelog, add missing image, deduplicate tutorials (`#938 <https://github.com/ros-perception/image_pipeline/issues/938>`_)
+  Last bit of documentation updates - putting together a single changelog
+  summary for the whole release (rather than scattering among packages).
+  Unified the camera_info tutorial so it isn't duplicated. Added a missing
+  image from image_rotate (was on local disk, but hadn't committed it)
+* add docs for image_rotate/publisher (`#936 <https://github.com/ros-perception/image_pipeline/issues/936>`_)
+* Contributors: Michael Ferguson
+
 5.0.0 (2024-01-24)
 ------------------
 * Removed cfg files related with ROS 1 parameters (`#911 <https://github.com/ros-perception/image_pipeline/issues/911>`_)
